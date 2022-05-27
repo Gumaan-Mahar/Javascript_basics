@@ -1,0 +1,108 @@
+<!-- HIGHT ORDER FUNCTIONS = High Order Functions are functions that operate on other functions, either by
+taking them as arguments or by returning them.
+-->
+<script>
+  //high order function
+  let sum = (function () {
+    // this is a high order function cause it return a function as its result
+    return function (a, b, c) {
+      const args = [a, b, c];
+      return args.reduce((a, b) => a + b, 0);
+    };
+  })();
+
+  console.log(sum(5, 5, 5));
+
+  // Destructuring Assignment
+  const daysOfWeek = {
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday",
+    7: "Sunday",
+  };
+
+  const {
+    1: firstDayOfWeek,
+    2: secondDayOfWeek,
+    3: thirdDayOfWeek,
+    4: fourthDayOfWeek,
+    5: fifthDayOfWeek,
+    6: sixthDayOfWeek,
+    7: seventhDayOfWeek,
+  } = daysOfWeek;
+
+  console.log(
+    firstDayOfWeek +
+      " , " +
+      secondDayOfWeek +
+      " , " +
+      thirdDayOfWeek +
+      " , " +
+      fourthDayOfWeek +
+      " , " +
+      fifthDayOfWeek +
+      " , " +
+      sixthDayOfWeek +
+      " , " +
+      seventhDayOfWeek +
+      " , "
+  );
+
+  //nested destructing assignment
+  let forecast = {
+    today: { min: 65, max: 77 },
+    tomorrow: { min: 66, max: 79 },
+  };
+
+  let {
+    tomorrow: { max: tomorrowMax },
+  } = forecast;
+
+  console.log(tomorrowMax);
+
+  //Using destructuring assignment to pass an object as a function's argument
+  let marks = {
+    min: 25,
+    mid: 50,
+    max: 100,
+  };
+
+  let infoAboutMarks = (function () {
+    return function ({min, max}) {
+      return (
+        "The minimum number of marks: " +
+        min +
+        "\nThe maximun number of marks: " +
+        max
+      );
+    };
+  })();
+
+  console.log(infoAboutMarks(marks));
+
+  //randon generator(algorithm)
+  function randomNumberGenerator(minNum, maxNum) {
+    return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+  }
+
+  console.log(randomNumberGenerator(1, 10));
+
+  let arrayOfRandomNumbers = [];
+
+  for (let i = 1; i <= 10; i++) {
+    arrayOfRandomNumbers.push(randomNumberGenerator(1, 100));
+  }
+
+  console.log(arrayOfRandomNumbers);
+
+  //built-in high order function
+  let squaredNumbers = arrayOfRandomNumbers
+    .filter((num) => num % 2 === 0 ?? num)
+    .map((x) => x * x);
+  console.log(squaredNumbers);
+
+  
+</script>
